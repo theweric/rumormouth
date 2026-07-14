@@ -1,0 +1,41 @@
+name: Fetch feed & deploy
+
+# Runs on a schedule, pulls fresh Wire/Release items into content/posts/,
+# commits anything new, and pushes. The push is what triggers Cloudflare
+# Pages to automatically rebuild and redeploy the site — no server needed.
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # every hour, on the hour (UTC). Adjust as needed.
+  workflow_dispatch:        # lets you trigger a run manually from GitHub's UI
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        working-directory: scripts
+        run: npm install rss-parser gray-matter
+
+      - name: Run feed fetch
+        working-directory: scripts
+        run: node fetch-feed.js
+
+      - name: Commit new posts, if any
+        run: |
+          git config user.name "rumormouth-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add content/posts/
+          git diff --cached --quiet || git commit -m "Auto: pull latest wire/release posts"
+          git push

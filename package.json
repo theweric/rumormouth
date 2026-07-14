@@ -1,0 +1,18 @@
+{
+  "name": "rumormouth",
+  "version": "1.0.0",
+  "description": "A clean, static, no-database starter for the new site. Nothing here is connected to the old redcarpeting.com codebase, database, or content — this is a from-scratch build.",
+  "main": "script.js",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "fetch-feed": "node scripts/fetch-feed.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "gray-matter": "^4.0.3"
+  }
+}

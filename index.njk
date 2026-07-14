@@ -1,0 +1,77 @@
+---
+layout: base.njk
+title: RumorMouth
+---
+<main>
+
+  {% set featured = collections.originalPosts[0] %}
+  {% if featured %}
+  <section class="hero">
+    <div class="hero-quote">&ldquo;</div>
+    <p class="hero-eyebrow">Overheard today</p>
+    <h2 class="hero-headline">
+      <a href="{{ featured.url }}">{{ featured.data.title }}</a>
+    </h2>
+    <p class="hero-dek">{{ featured.templateContent | striptags | truncate(180) }}</p>
+    <div class="hero-meta">
+      <span class="whispered-by">Whispered by <strong>Original</strong></span>
+      <span class="dot">·</span>
+      <span>{{ featured.data.date | dateDisplay }}</span>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="wire" id="wire">
+    <div class="section-head">
+      <h3><span class="q">&ldquo;</span>The Wire</h3>
+      <p class="section-note">Headlines & excerpts, curated from outside sources — full stories live where they were reported. Updated automatically.</p>
+    </div>
+
+    <div class="wire-list">
+      {% for post in collections.wirePosts | reverse %}
+      <article class="wire-item">
+        <div class="wire-tag {% if loop.first %}hot{% endif %}">{{ post.data.tag or "DEVELOPING" }}</div>
+        <h4><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+        <p class="wire-excerpt">{{ post.templateContent | striptags | truncate(160) }}</p>
+        <div class="wire-source">
+          <span class="source-name">via {{ post.data.source_name }}</span>
+          <span class="dot">·</span>
+          <a href="{{ post.url }}" class="source-link">Read more →</a>
+        </div>
+      </article>
+      {% else %}
+      <p class="section-note">No wire items yet — run <code>npm run fetch-feed</code> to pull in the latest, or add Markdown files to content/posts/.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="hot-takes" id="hot-takes">
+    <div class="section-head">
+      <h3><span class="q">&ldquo;</span>Hot Takes</h3>
+      <p class="section-note">Original writing. Actual opinions, actually written by someone here.</p>
+    </div>
+
+    <div class="takes-grid">
+      {% for post in collections.originalPosts %}
+      <article class="take-card">
+        <span class="take-kind">Original</span>
+        <h4><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+        <p>{{ post.templateContent | striptags | truncate(120) }}</p>
+        <span class="take-byline">by {{ post.data.byline or "The Desk" }}</span>
+      </article>
+      {% else %}
+      <p class="section-note">No original posts yet — add a Markdown file with <code>type: original</code> to content/posts/.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="categories" id="categories">
+    <a href="#" class="cat-chip">Film & TV</a>
+    <a href="#" class="cat-chip">Music</a>
+    <a href="#" class="cat-chip">Red Carpet</a>
+    <a href="#" class="cat-chip">Reality TV</a>
+    <a href="#" class="cat-chip">Splits & Sparks</a>
+    <a href="#" class="cat-chip">Industry</a>
+  </section>
+
+</main>

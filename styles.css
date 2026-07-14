@@ -1,0 +1,502 @@
+/* ============================================================
+   RumorMouth — Design tokens
+   Palette:
+     --ink       #181820  near-black navy-ink, primary text
+     --paper     #F1EEE6  warm newsprint white, page background
+     --paper-2   #E8E3D7  slightly deeper paper, card backgrounds
+     --coral     #E63462  loud accent — tags, links, the one bright thing
+     --coral-ink #B01F45  pressed/hover state of coral
+     --yellow    #F5C63A  secondary accent — sticky-note highlight, rare use
+     --line      #D8D2C2  hairline rule color
+   Type:
+     Display  — 'Anton' — shouty tabloid headline face, all-caps energy
+     Body     — 'Newsreader' — warm editorial serif, readable at length
+     Utility  — 'JetBrains Mono' — wire-service timestamps, tags, meta
+   ============================================================ */
+
+:root {
+  --ink: #181820;
+  --paper: #F1EEE6;
+  --paper-2: #E8E3D7;
+  --coral: #E63462;
+  --coral-ink: #B01F45;
+  --yellow: #F5C63A;
+  --line: #D8D2C2;
+
+  --display: 'Anton', sans-serif;
+  --body: 'Newsreader', Georgia, serif;
+  --mono: 'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* subtle paper grain so the newsprint-white doesn't feel flat/digital */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============ Masthead ============ */
+
+.masthead {
+  border-bottom: 3px solid var(--ink);
+  background: var(--paper);
+}
+
+.masthead-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px 24px 0;
+  text-align: center;
+}
+
+.masthead-top {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.65;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 10px;
+}
+
+.masthead-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(48px, 11vw, 96px);
+  letter-spacing: 0.01em;
+  margin: 18px 0 4px;
+  line-height: 0.9;
+}
+
+.mark {
+  color: var(--coral);
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.masthead-sub {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 17px;
+  opacity: 0.75;
+  margin: 0 0 20px;
+}
+
+.masthead-nav {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  font-family: var(--mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 16px;
+}
+
+.masthead-nav a {
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.masthead-nav a:hover {
+  border-color: var(--coral);
+  color: var(--coral-ink);
+}
+
+/* ============ Hero ============ */
+
+.hero {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 72px 24px 56px;
+  position: relative;
+  text-align: center;
+}
+
+.hero-quote {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 160px;
+  color: var(--coral);
+  line-height: 0;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--coral-ink);
+  margin: 0 0 14px;
+}
+
+.hero-headline {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(32px, 5.2vw, 54px);
+  line-height: 1.05;
+  margin: 0 0 22px;
+  position: relative;
+}
+
+.hero-headline a:hover { color: var(--coral-ink); }
+
+.hero-dek {
+  font-size: 19px;
+  opacity: 0.8;
+  max-width: 620px;
+  margin: 0 auto 22px;
+}
+
+.hero-meta {
+  font-family: var(--mono);
+  font-size: 13px;
+  opacity: 0.65;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.whispered-by strong { color: var(--coral-ink); }
+
+.dot { opacity: 0.5; }
+
+/* ============ Section heads (shared) ============ */
+
+.section-head {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  border-top: 3px solid var(--ink);
+  padding-top: 14px;
+  margin-top: 8px;
+}
+
+.section-head h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 34px;
+  margin: 0 0 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.section-head .q {
+  color: var(--coral);
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 40px;
+}
+
+.section-note {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  opacity: 0.6;
+  margin: 0 0 8px;
+  max-width: 520px;
+}
+
+/* ============ Wire (curated feed) ============ */
+
+.wire {
+  padding-bottom: 20px;
+}
+
+.wire-list {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 8px 24px 0;
+}
+
+.wire-item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 18px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: start;
+}
+
+.wire-tag {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 4px 8px;
+  text-align: center;
+  white-space: nowrap;
+  height: fit-content;
+}
+
+.wire-tag.hot {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: var(--paper);
+}
+
+.wire-item h4 {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.25;
+  margin: 0 0 8px;
+}
+
+.wire-item h4 a:hover { color: var(--coral-ink); }
+
+.wire-excerpt {
+  font-style: italic;
+  opacity: 0.75;
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.wire-source {
+  font-family: var(--mono);
+  font-size: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  opacity: 0.7;
+}
+
+.source-link {
+  color: var(--coral-ink);
+  opacity: 1;
+}
+
+.source-link:hover { text-decoration: underline; }
+
+/* ============ Hot Takes (original content) ============ */
+
+.hot-takes {
+  background: var(--paper-2);
+  padding-bottom: 40px;
+  margin-top: 30px;
+}
+
+.hot-takes .section-head { border-top-color: var(--ink); padding-top: 30px; }
+
+.takes-grid {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.take-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  padding: 20px;
+}
+
+.take-kind {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 3px 7px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.take-card h4 {
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  margin: 0 0 8px;
+}
+
+.take-card h4 a:hover { color: var(--coral-ink); }
+
+.take-card p {
+  font-size: 14.5px;
+  opacity: 0.75;
+  margin: 0 0 14px;
+}
+
+.take-byline {
+  font-family: var(--mono);
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* ============ Categories ============ */
+
+.categories {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.cat-chip {
+  font-family: var(--mono);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--ink);
+  padding: 8px 16px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.cat-chip:hover {
+  background: var(--yellow);
+  border-color: var(--yellow);
+}
+
+/* ============ Footer ============ */
+
+footer {
+  border-top: 3px solid var(--ink);
+  padding: 40px 24px 50px;
+}
+
+.footer-inner {
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-mark {
+  font-family: Georgia, serif;
+  font-style: italic;
+  color: var(--coral);
+  font-size: 30px;
+  margin: 0 0 10px;
+}
+
+.footer-line {
+  font-size: 15px;
+  opacity: 0.75;
+  margin: 0 0 16px;
+}
+
+.footer-copy {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  opacity: 0.5;
+}
+
+/* ============ Article page ============ */
+
+.article-wrap {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 60px 24px 100px;
+}
+
+.article-kicker {
+  font-family: var(--mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--coral-ink);
+  margin-bottom: 14px;
+}
+
+.article-title {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(32px, 5.5vw, 50px);
+  line-height: 1.05;
+  margin: 0 0 18px;
+}
+
+.article-meta {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  opacity: 0.6;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+
+.article-body p {
+  font-size: 19px;
+  margin: 0 0 22px;
+}
+
+.article-body p:first-of-type::first-letter {
+  font-family: var(--display);
+  font-size: 64px;
+  float: left;
+  line-height: 0.8;
+  padding: 8px 8px 0 0;
+  color: var(--coral);
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 40px;
+  font-family: var(--mono);
+  font-size: 13px;
+  border-bottom: 2px solid var(--coral);
+}
+
+/* ============ Responsive ============ */
+
+@media (max-width: 720px) {
+  .takes-grid { grid-template-columns: 1fr; }
+  .wire-item { grid-template-columns: 1fr; }
+  .masthead-nav { gap: 16px; flex-wrap: wrap; }
+  .hero-quote { font-size: 100px; }
+}
+
+/* ============ Reduced motion ============ */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+/* ============ Focus visibility ============ */
+
+a:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}

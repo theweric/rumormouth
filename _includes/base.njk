@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title or "RumorMouth" }} — RumorMouth</title>
+<meta name="description" content="{{ description or "RumorMouth: curated entertainment gossip, wire updates, and original takes." }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="masthead-top">
+      <span class="masthead-date" id="masthead-date">—</span>
+      <span class="masthead-tag">No. 001 · Est. Today</span>
+    </div>
+    <h1 class="masthead-title">
+      <a href="/" style="color:inherit;"><span class="mark">&ldquo;</span>RumorMouth<span class="mark mark-end">&rdquo;</span></a>
+    </h1>
+    <p class="masthead-sub">Whatever's being said, wherever it's coming from.</p>
+    <nav class="masthead-nav">
+      <a href="/#wire">The Wire</a>
+      <a href="/#hot-takes">Hot Takes</a>
+      <a href="/#categories">Categories</a>
+      <a href="/#about">About</a>
+    </nav>
+  </div>
+</header>
+
+{{ content | safe }}
+
+<footer id="about">
+  <div class="footer-inner">
+    <p class="footer-mark">&ldquo;&rdquo;</p>
+    <p class="footer-line">RumorMouth curates entertainment headlines from public sources with excerpt and attribution, publishes licensed wire releases in full, and writes its own original takes. We link to where a story was actually reported — always.</p>
+    <p class="footer-copy">© <span id="year">2026</span> RumorMouth. This is a starter build — replace this text with your real about copy before launch.</p>
+  </div>
+</footer>
+
+<script src="/script.js"></script>
+</body>
+</html>

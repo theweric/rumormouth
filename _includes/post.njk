@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+<main class="article-wrap">
+  <p class="article-kicker">
+    {% if type == "original" %}Original · Hot Takes
+    {% elif type == "release" %}Press Release · {{ source_name }}
+    {% else %}The Wire · {{ source_name }}
+    {% endif %}
+  </p>
+  <h1 class="article-title">{{ title }}</h1>
+  <div class="article-meta">
+    {% if type == "original" %}by {{ byline or "The Desk" }}{% else %}via {{ source_name }}{% endif %}
+    &nbsp;·&nbsp; {{ date | dateDisplay }}
+  </div>
+
+  <div class="article-body">
+    {{ content | safe }}
+  </div>
+
+  {% if source_url %}
+    <p><a href="{{ source_url }}" target="_blank" rel="noopener">Read the full story at {{ source_name }} →</a></p>
+  {% endif %}
+
+  <a href="/" class="back-link">← Back to the front page</a>
+</main>
