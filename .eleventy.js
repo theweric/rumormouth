@@ -37,6 +37,14 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
 
+  eleventyConfig.addFilter("slugify", (str) =>
+    String(str || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+  );
+
+  eleventyConfig.addFilter("whereCategory", (posts, cat) =>
+    (posts || []).filter((p) => p.data.category === cat)
+  );
+
   eleventyConfig.addFilter("striptags", (str) => {
     const noTags = (str || "").replace(/<[^>]+>/g, "");
     return noTags

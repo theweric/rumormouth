@@ -70,12 +70,9 @@ title: RumorMouth
   </section>
 
   <section class="categories" id="categories">
-    <a href="#" class="cat-chip">Film & TV</a>
-    <a href="#" class="cat-chip">Music</a>
-    <a href="#" class="cat-chip">Red Carpet</a>
-    <a href="#" class="cat-chip">Reality TV</a>
-    <a href="#" class="cat-chip">Splits & Sparks</a>
-    <a href="#" class="cat-chip">Industry</a>
+    {% for cat in categories %}
+    <a href="/category/{{ cat | slugify }}/" class="cat-chip">{{ cat }}</a>
+    {% endfor %}
   </section>
 
 </main>

@@ -1,0 +1,42 @@
+---
+layout: base.njk
+pagination:
+  data: categories
+  size: 1
+  alias: category
+permalink: "/category/{{ category | slugify }}/"
+eleventyComputed:
+  title: "{{ category }}"
+---
+<main>
+  <section class="wire" id="wire">
+    <div class="section-head">
+      <h3><span class="q">&ldquo;</span>{{ category }}</h3>
+      <p class="section-note">Everything tagged {{ category }} — Wire updates, releases, and Hot Takes together.</p>
+    </div>
+
+    <div class="wire-list">
+      {% for post in collections.posts | whereCategory(category) %}
+      <article class="wire-item">
+        <div class="wire-tag">{{ post.data.tag or (post.data.type | upper) }}</div>
+        <h4><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+        <p class="wire-excerpt">{{ post.templateContent | striptags | truncate(160) }}</p>
+        <div class="wire-source">
+          {% if post.data.source_name %}
+          <span class="source-name">via {{ post.data.source_name }}</span>
+          <span class="dot">·</span>
+          {% endif %}
+          <a href="{{ post.url }}" class="source-link">Read more →</a>
+        </div>
+      </article>
+      {% else %}
+      <p class="section-note">Nothing filed under {{ category }} yet — check back soon.</p>
+      {% endfor %}
+    </div>
+
+    <nav class="categories" style="padding-top: 20px;">
+      <a href="/#categories" class="cat-chip">All categories</a>
+      <a href="/" class="cat-chip">Back to homepage</a>
+    </nav>
+  </section>
+</main>
