@@ -35,6 +35,8 @@ module.exports = function (eleventyConfig) {
     (str || "").length > n ? str.slice(0, n).trim() + "…" : str
   );
 
+  eleventyConfig.addFilter("limit", (arr, n) => (arr || []).slice(0, n));
+
   eleventyConfig.addFilter("striptags", (str) => {
     const noTags = (str || "").replace(/<[^>]+>/g, "");
     return noTags

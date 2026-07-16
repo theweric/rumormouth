@@ -1,0 +1,44 @@
+---
+layout: base.njk
+title: The Wire — Archive
+pagination:
+  data: collections.wirePosts
+  size: 25
+  alias: pagePosts
+permalink: "{% if pagination.pageNumber == 0 %}/wire-archive/{% else %}/wire-archive/page/{{ pagination.pageNumber | int + 1 }}/{% endif %}"
+---
+<main>
+  <section class="wire" id="wire">
+    <div class="section-head">
+      <h3><span class="q">&ldquo;</span>The Wire — Full Archive</h3>
+      <p class="section-note">All curated headlines and press releases, newest first. Page {{ pagination.pageNumber | int + 1 }} of {{ pagination.pages.length }}.</p>
+    </div>
+
+    <div class="wire-list">
+      {% for post in pagePosts %}
+      <article class="wire-item">
+        <div class="wire-tag">{{ post.data.tag or "DEVELOPING" }}</div>
+        <h4><a href="{{ post.url }}">{{ post.data.title }}</a></h4>
+        <p class="wire-excerpt">{{ post.templateContent | striptags | truncate(160) }}</p>
+        <div class="wire-source">
+          <span class="source-name">via {{ post.data.source_name }}</span>
+          <span class="dot">·</span>
+          <span>{{ post.data.date | dateDisplay }}</span>
+          <span class="dot">·</span>
+          <a href="{{ post.url }}" class="source-link">Read more →</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <nav class="categories" style="padding-top: 20px;">
+      {% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}" class="cat-chip">← Newer</a>
+      {% endif %}
+      {% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}" class="cat-chip">Older →</a>
+      {% endif %}
+      <a href="/#wire" class="cat-chip">Back to homepage</a>
+    </nav>
+  </section>
+</main>

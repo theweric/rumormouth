@@ -49,6 +49,44 @@ const EXCERPT_MAX_CHARS = 220;
 const OUTPUT_DIR = path.join(__dirname, '..', 'content', 'posts');
 const MAX_ITEMS_PER_SOURCE = 5; // keep the demo run small; raise once this is live
 
+// PR Newswire's "Entertainment & Media" category feed includes a lot of
+// general business PR (market research reports, law firms, insurance,
+// dental practices, etc.) alongside genuine entertainment releases, plus
+// the same release repeated in multiple languages. Filter both out below.
+
+// Skip a release if the title matches any of these — general business PR
+// that isn't actually entertainment/gossip relevant, even though it came
+// through the "Entertainment & Media" feed category.
+const RELEASE_BLOCKLIST = [
+  /\bmarket (size|share|to reach|research|report)\b/i,
+  /\binsurance\b/i,
+  /\blaw firm|attorney|dentistry|dental\b/i,
+  /\bHelloNation\b/i,
+  /\bCEO Confidence|antitrust|shareholder|earnings\b/i,
+  /\bInventHelp\b/i,
+];
+
+// A quick, dependency-free English check: real English sentences are full
+// of short common function words (the, and, of, to...). Non-English text
+// (even in a Latin-script language like French or Spanish) won't match
+// nearly as many of these, since the specific words are English-only.
+const ENGLISH_MARKERS = /\b(the|and|of|to|in|for|is|with|on|by|from|that|will|has)\b/gi;
+
+function looksEnglish(text) {
+  const sample = String(text || '').slice(0, 500);
+  const wordCount = sample.split(/\s+/).filter(Boolean).length;
+  if (wordCount < 8) return true; // too short to judge, don't block it
+  const matches = (sample.match(ENGLISH_MARKERS) || []).length;
+  return matches / wordCount > 0.03; // English text clears this easily; other languages don't
+}
+
+function isOnTopicRelease(item) {
+  const title = item.title || '';
+  if (RELEASE_BLOCKLIST.some((re) => re.test(title))) return false;
+  if (!looksEnglish(title) || !looksEnglish(item.contentSnippet || item.content)) return false;
+  return true;
+}
+
 function stripHtml(html) {
   return String(html || '').replace(/<[^>]+>/g, '').trim();
 }
@@ -142,7 +180,7 @@ async function main() {
   for (const source of RELEASE_SOURCES) {
     try {
       const feed = await parser.parseURL(source.url);
-      const items = (feed.items || []).slice(0, MAX_ITEMS_PER_SOURCE);
+      const items = (feed.items || []).filter(isOnTopicRelease).slice(0, MAX_ITEMS_PER_SOURCE);
       for (const item of items) {
         const f = writeReleaseItem(item, source);
         console.log(`  release[${source.name}] -> ${f}`);
