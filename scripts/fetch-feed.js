@@ -117,6 +117,7 @@ function yamlEscape(str) {
 function writeWireItem(item, source) {
   const date = isoDate(item.pubDate);
   const filename = `${date}-${slugify(item.title)}.md`;
+  const excerpt = toExcerpt(item.contentSnippet || item.content || item.summary);
   const frontmatter = [
     '---',
     `title: "${yamlEscape(item.title)}"`,
@@ -126,9 +127,10 @@ function writeWireItem(item, source) {
     `date: ${date}`,
     `category: "${source.category}"`,
     'tag: "DEVELOPING"',
+    `excerpt: "${yamlEscape(excerpt).slice(0, 155)}"`,
     '---',
     '',
-    toExcerpt(item.contentSnippet || item.content || item.summary),
+    excerpt,
     '',
   ].join('\n');
   fs.writeFileSync(path.join(OUTPUT_DIR, filename), frontmatter);
@@ -139,6 +141,7 @@ function writeReleaseItem(item, source) {
   const date = isoDate(item.pubDate);
   const filename = `${date}-${slugify(item.title)}.md`;
   const body = stripHtml(item.content || item['content:encoded'] || item.contentSnippet);
+  const excerpt = toExcerpt(body);
   const frontmatter = [
     '---',
     `title: "${yamlEscape(item.title)}"`,
@@ -148,6 +151,7 @@ function writeReleaseItem(item, source) {
     `date: ${date}`,
     `category: "${source.category}"`,
     'tag: "PRESS RELEASE"',
+    `excerpt: "${yamlEscape(excerpt).slice(0, 155)}"`,
     '---',
     '',
     body,

@@ -76,3 +76,13 @@ title: RumorMouth
   </section>
 
 </main>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ site.name | dump | safe }},
+  "url": {{ site.url | dump | safe }},
+  "description": {{ site.tagline | dump | safe }}
+}
+</script>

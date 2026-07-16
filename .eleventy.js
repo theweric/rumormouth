@@ -6,6 +6,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("script.js");
   eleventyConfig.addPassthroughCopy("_headers");
+  eleventyConfig.addPassthroughCopy("robots.txt");
   eleventyConfig.addPassthroughCopy({ assets: "assets" });
 
   // All Markdown posts, newest first.
@@ -30,6 +31,12 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("dateDisplay", (d) =>
     new Date(d).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })
   );
+
+  eleventyConfig.addFilter("isoDate", (d) => {
+    if (!d) return "";
+    const jsDate = d.toJSDate ? d.toJSDate() : new Date(d);
+    return jsDate.toISOString().slice(0, 10);
+  });
 
   eleventyConfig.addFilter("truncate", (str, n) =>
     (str || "").length > n ? str.slice(0, n).trim() + "…" : str

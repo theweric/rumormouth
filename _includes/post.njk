@@ -24,3 +24,17 @@ layout: base.njk
 
   <a href="/" class="back-link">← Back to the front page</a>
 </main>
+
+{% if type == "original" or type == "release" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": {{ title | dump | safe }},
+  "datePublished": "{{ date | isoDate }}",
+  "author": { "@type": "Organization", "name": "RumorMouth" },
+  "publisher": { "@type": "Organization", "name": "RumorMouth" },
+  "mainEntityOfPage": "{{ site.url }}{{ page.url }}"
+}
+</script>
+{% endif %}

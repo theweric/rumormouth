@@ -4,7 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ title or "RumorMouth" }} — RumorMouth</title>
-<meta name="description" content="{{ description or "RumorMouth: curated entertainment gossip, wire updates, and original takes." }}">
+<meta name="description" content="{{ (description or site.tagline) | truncate(160) }}">
+<link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+<meta property="og:type" content="{{ 'article' if type else 'website' }}">
+<meta property="og:site_name" content="{{ site.name }}">
+<meta property="og:title" content="{{ title or site.name }}">
+<meta property="og:description" content="{{ (description or site.tagline) | truncate(160) }}">
+<meta property="og:url" content="{{ site.url }}{{ page.url }}">
+{% if image %}<meta property="og:image" content="{{ site.url }}{{ image }}">{% endif %}
+
+<meta name="twitter:card" content="{{ 'summary_large_image' if image else 'summary' }}">
+<meta name="twitter:title" content="{{ title or site.name }}">
+<meta name="twitter:description" content="{{ (description or site.tagline) | truncate(160) }}">
+{% if image %}<meta name="twitter:image" content="{{ site.url }}{{ image }}">{% endif %}
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@400;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
