@@ -6,7 +6,7 @@ source_url: "https://www.rollingstone.com/music/music-news/eric-stonestreet-tayl
 date: 2026-07-16
 category: "Music"
 tag: "DEVELOPING"
-excerpt: "\"It just happened to be at Madison Square Garden with security making sure everybody was safe and good and they could just have a night for themselves\""
+excerpt: "“It just happened to be at Madison Square Garden with security making sure everybody was safe and good and they could just have a night for themselves”"
 ---
 
-"It just happened to be at Madison Square Garden with security making sure everybody was safe and good and they could just have a night for themselves"
+“It just happened to be at Madison Square Garden with security making sure everybody was safe and good and they could just have a night for themselves”
