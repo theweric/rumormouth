@@ -2,7 +2,7 @@
 title: "Masterpieces at Their Peak: The World's Largest Exhibition on the Ancient Civilizations of the Americas Opens at the Shanghai Museum"
 type: release
 source_name: "PR Newswire — Entertainment & Media"
-source_url: "https://www.prnewswire.com/news-releases/masterpieces-at-their-peak-the-worlds-largest-exhibition-on-the-ancient-civilizations-of-the-americas-opens-at-the-shanghai-museum-302828304.html"
+source_url: "https://www.prnewswire.com/news-releases/masterpieces-at-their-peak-the-worlds-largest-exhibition-on-the-ancient-civilizations-of-the-americas-opens-at-the-shanghai-museum-302828323.html"
 date: 2026-07-17
 category: "Industry"
 tag: "PRESS RELEASE"
