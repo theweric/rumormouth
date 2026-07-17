@@ -6,7 +6,7 @@ source_url: "https://www.rollingstone.com/music/music-news/travis-scott-james-bl
 date: 2026-07-17
 category: "Music"
 tag: "DEVELOPING"
-excerpt: "Rapper, who has a cameo role in Christopher Nolan's epic, previously contributed end credits track to the director's Tenet"
+excerpt: "Rapper, who has a cameo role in Christopher Nolan’s epic, previously contributed end credits track to the director’s Tenet"
 ---
 
-Rapper, who has a cameo role in Christopher Nolan's epic, previously contributed end credits track to the director's Tenet
+Rapper, who has a cameo role in Christopher Nolan’s epic, previously contributed end credits track to the director’s Tenet
