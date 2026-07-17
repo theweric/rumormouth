@@ -6,7 +6,7 @@ source_url: "https://variety.com/2026/film/news/paramount-warner-bros-merger-res
 date: 2026-07-17
 category: "Film & TV"
 tag: "DEVELOPING"
-excerpt: "A judge on Friday heard arguments on a state coalition’s bid for a restraining order to pause the Paramount-Warner Bros. Discovery merger, and said she wou"
+excerpt: "A judge on Friday heard arguments on a state coalition’s bid for a restraining order to pause the Paramount-Warner Bros. Discovery merger and said she woul"
 ---
 
-A judge on Friday heard arguments on a state coalition’s bid for a restraining order to pause the Paramount-Warner Bros. Discovery merger, and said she would issue a ruling by next Wednesday. Judge Araceli Martinez-Olgui…
+A judge on Friday heard arguments on a state coalition’s bid for a restraining order to pause the Paramount-Warner Bros. Discovery merger and said she would issue a ruling by next Wednesday. Judge Araceli Martinez-Olguin…
