@@ -28,6 +28,7 @@
 const Parser = require('rss-parser');
 const fs = require('fs');
 const path = require('path');
+const matter = require('gray-matter');
 
 // Media RSS namespace tags (<media:content>, <media:thumbnail>) aren't part
 // of the base RSS spec, so rss-parser doesn't pick them up unless told to.
@@ -151,32 +152,28 @@ function isoDate(d) {
   return new Date(d || Date.now()).toISOString().slice(0, 10);
 }
 
-function yamlEscape(str) {
-  return String(str || '').replace(/"/g, '\\"').replace(/\r?\n/g, ' ').trim();
-}
-
 function writeWireItem(item, source) {
   const date = isoDate(item.pubDate);
   const filename = `${date}-${slugify(item.title)}.md`;
   const excerpt = toExcerpt(item.contentSnippet || item.content || item.summary);
   const image = extractImage(item);
-  const frontmatter = [
-    '---',
-    `title: "${yamlEscape(item.title)}"`,
-    'type: wire',
-    `source_name: "${yamlEscape(source.name)}"`,
-    `source_url: "${item.link}"`,
-    `date: ${date}`,
-    `category: "${source.category}"`,
-    'tag: "DEVELOPING"',
-    `excerpt: "${yamlEscape(excerpt).slice(0, 155)}"`,
-    ...(image ? [`image: "${image}"`] : []),
-    '---',
-    '',
-    excerpt,
-    '',
-  ].join('\n');
-  fs.writeFileSync(path.join(OUTPUT_DIR, filename), frontmatter);
+  const data = {
+    title: item.title,
+    type: 'wire',
+    source_name: source.name,
+    source_url: item.link,
+    date,
+    category: source.category,
+    tag: 'DEVELOPING',
+    // Truncate the RAW text first, then let gray-matter handle escaping —
+    // truncating an already-escaped string can chop a "\"" pair in half,
+    // leaving a dangling backslash that breaks YAML parsing for every post
+    // in the build, not just this one. This ordering makes that impossible.
+    excerpt: excerpt.slice(0, 155),
+  };
+  if (image) data.image = image;
+  const fileContent = matter.stringify(excerpt + '\n', data);
+  fs.writeFileSync(path.join(OUTPUT_DIR, filename), fileContent);
   return filename;
 }
 
@@ -186,23 +183,19 @@ function writeReleaseItem(item, source) {
   const body = stripHtml(item.content || item['content:encoded'] || item.contentSnippet);
   const excerpt = toExcerpt(body);
   const image = extractImage(item);
-  const frontmatter = [
-    '---',
-    `title: "${yamlEscape(item.title)}"`,
-    'type: release',
-    `source_name: "${yamlEscape(source.name)}"`,
-    `source_url: "${item.link}"`,
-    `date: ${date}`,
-    `category: "${source.category}"`,
-    'tag: "PRESS RELEASE"',
-    `excerpt: "${yamlEscape(excerpt).slice(0, 155)}"`,
-    ...(image ? [`image: "${image}"`] : []),
-    '---',
-    '',
-    body,
-    '',
-  ].join('\n');
-  fs.writeFileSync(path.join(OUTPUT_DIR, filename), frontmatter);
+  const data = {
+    title: item.title,
+    type: 'release',
+    source_name: source.name,
+    source_url: item.link,
+    date,
+    category: source.category,
+    tag: 'PRESS RELEASE',
+    excerpt: excerpt.slice(0, 155),
+  };
+  if (image) data.image = image;
+  const fileContent = matter.stringify(body + '\n', data);
+  fs.writeFileSync(path.join(OUTPUT_DIR, filename), fileContent);
   return filename;
 }
 
@@ -251,4 +244,4 @@ if (require.main === module) {
   main();
 }
 
-module.exports = { isOnTopicRelease, looksEnglish, RELEASE_BLOCKLIST };
+module.exports = { isOnTopicRelease, looksEnglish, RELEASE_BLOCKLIST, writeWireItem, writeReleaseItem };
