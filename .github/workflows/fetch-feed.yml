@@ -15,6 +15,7 @@ permissions:
 jobs:
   fetch-and-commit:
     runs-on: ubuntu-latest
+    timeout-minutes: 10   # fail fast instead of silently hanging up to the 6-hour default
     steps:
       - name: Check out repo
         uses: actions/checkout@v4
@@ -23,12 +24,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "npm"
-          cache-dependency-path: scripts/package-lock.json
 
       - name: Install dependencies
         working-directory: scripts
-        run: npm ci
+        run: npm install
 
       - name: Run feed fetch
         working-directory: scripts
