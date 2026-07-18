@@ -29,6 +29,19 @@ const Parser = require('rss-parser');
 const fs = require('fs');
 const path = require('path');
 
+// Media RSS namespace tags (<media:content>, <media:thumbnail>) aren't part
+// of the base RSS spec, so rss-parser doesn't pick them up unless told to.
+// Standard <enclosure> tags are parsed automatically as item.enclosure.
+const PARSER_OPTIONS = {
+  timeout: 15000,
+  customFields: {
+    item: [
+      ['media:content', 'mediaContent', { keepArray: true }],
+      ['media:thumbnail', 'mediaThumbnail', { keepArray: true }],
+    ],
+  },
+};
+
 // ---- Verified public RSS feeds, curated as excerpt + link (type: wire) ----
 const WIRE_SOURCES = [
   { name: 'Variety',    url: 'https://variety.com/feed/',                                    category: 'Film & TV' },
@@ -91,6 +104,34 @@ function stripHtml(html) {
   return String(html || '').replace(/<[^>]+>/g, '').trim();
 }
 
+function isLikelyImageUrl(url) {
+  return typeof url === 'string' && /^https?:\/\//i.test(url);
+}
+
+// Pulls the image the SOURCE article itself designated for previews — the
+// same one that would show up in a social media link-preview card. This
+// hotlinks to the source's own image rather than downloading/rehosting it,
+// matching how link previews work everywhere (Twitter, Facebook, iMessage,
+// Slack all do this too) — it's a citation aid, not a content reproduction.
+function extractImage(item) {
+  if (item.enclosure && isLikelyImageUrl(item.enclosure.url)) {
+    return item.enclosure.url;
+  }
+  if (Array.isArray(item.mediaContent) && item.mediaContent.length) {
+    const url = item.mediaContent[0]?.$?.url;
+    if (isLikelyImageUrl(url)) return url;
+  }
+  if (Array.isArray(item.mediaThumbnail) && item.mediaThumbnail.length) {
+    const url = item.mediaThumbnail[0]?.$?.url;
+    if (isLikelyImageUrl(url)) return url;
+  }
+  // Fallback: first <img src="..."> found in the raw HTML content, if any.
+  const html = item.content || item['content:encoded'] || '';
+  const match = String(html).match(/<img[^>]+src=["']([^"']+)["']/i);
+  if (match && isLikelyImageUrl(match[1])) return match[1];
+  return null;
+}
+
 function toExcerpt(html) {
   const text = stripHtml(html);
   return text.length > EXCERPT_MAX_CHARS
@@ -118,6 +159,7 @@ function writeWireItem(item, source) {
   const date = isoDate(item.pubDate);
   const filename = `${date}-${slugify(item.title)}.md`;
   const excerpt = toExcerpt(item.contentSnippet || item.content || item.summary);
+  const image = extractImage(item);
   const frontmatter = [
     '---',
     `title: "${yamlEscape(item.title)}"`,
@@ -128,6 +170,7 @@ function writeWireItem(item, source) {
     `category: "${source.category}"`,
     'tag: "DEVELOPING"',
     `excerpt: "${yamlEscape(excerpt).slice(0, 155)}"`,
+    ...(image ? [`image: "${image}"`] : []),
     '---',
     '',
     excerpt,
@@ -142,6 +185,7 @@ function writeReleaseItem(item, source) {
   const filename = `${date}-${slugify(item.title)}.md`;
   const body = stripHtml(item.content || item['content:encoded'] || item.contentSnippet);
   const excerpt = toExcerpt(body);
+  const image = extractImage(item);
   const frontmatter = [
     '---',
     `title: "${yamlEscape(item.title)}"`,
@@ -152,6 +196,7 @@ function writeReleaseItem(item, source) {
     `category: "${source.category}"`,
     'tag: "PRESS RELEASE"',
     `excerpt: "${yamlEscape(excerpt).slice(0, 155)}"`,
+    ...(image ? [`image: "${image}"`] : []),
     '---',
     '',
     body,
@@ -163,7 +208,7 @@ function writeReleaseItem(item, source) {
 
 async function main() {
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
-  const parser = new Parser({ timeout: 15000 });
+  const parser = new Parser(PARSER_OPTIONS);
   let written = 0;
   let failed = [];
 

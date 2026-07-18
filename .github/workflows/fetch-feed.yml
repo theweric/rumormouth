@@ -6,8 +6,8 @@ name: Fetch feed & deploy
 
 on:
   schedule:
-    - cron: "0 * * * *"   # every hour, on the hour (UTC). Adjust as needed.
-  workflow_dispatch:        # lets you trigger a run manually from GitHub's UI
+    - cron: "0 */6 * * *"   # every 6 hours (UTC) — 4 runs/day. Adjust as needed.
+  workflow_dispatch:          # lets you trigger a run manually from GitHub's UI
 
 permissions:
   contents: write
@@ -23,10 +23,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+          cache-dependency-path: scripts/package-lock.json
 
       - name: Install dependencies
         working-directory: scripts
-        run: npm install rss-parser gray-matter
+        run: npm ci
 
       - name: Run feed fetch
         working-directory: scripts

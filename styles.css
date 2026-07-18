@@ -270,6 +270,19 @@ a {
   color: var(--paper);
 }
 
+.wire-content {
+  min-width: 0; /* prevents grid children from overflowing on long titles */
+}
+
+.wire-thumb {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  display: block;
+  margin: 0 0 12px;
+  border: 1px solid var(--line);
+}
+
 .wire-item h4 {
   font-family: var(--body);
   font-weight: 600;
@@ -454,6 +467,14 @@ footer {
   border-bottom: 1px solid var(--line);
   padding-bottom: 24px;
   margin-bottom: 30px;
+}
+
+.article-hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 0 30px;
+  border: 1px solid var(--line);
 }
 
 .article-body p {

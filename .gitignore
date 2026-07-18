@@ -5,10 +5,6 @@ _site/
 node_modules/
 scripts/node_modules/
 
-# Lockfiles from nested npm installs (keep the root one if you use it)
-scripts/package-lock.json
-scripts/package.json
-
 # OS/editor cruft
 .DS_Store
 *.log
