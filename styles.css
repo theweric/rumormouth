@@ -277,6 +277,8 @@ a {
 .wire-thumb {
   width: 100%;
   max-width: 320px;
+  max-height: 240px;
+  object-fit: cover;
   height: auto;
   display: block;
   margin: 0 0 12px;
@@ -471,6 +473,8 @@ footer {
 
 .article-hero-image {
   width: 100%;
+  max-height: 500px;
+  object-fit: cover;
   height: auto;
   display: block;
   margin: 0 0 30px;
