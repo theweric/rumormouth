@@ -274,17 +274,6 @@ a {
   min-width: 0; /* prevents grid children from overflowing on long titles */
 }
 
-.wire-thumb {
-  width: 100%;
-  max-width: 320px;
-  max-height: 240px;
-  object-fit: cover;
-  height: auto;
-  display: block;
-  margin: 0 0 12px;
-  border: 1px solid var(--line);
-}
-
 .wire-item h4 {
   font-family: var(--body);
   font-weight: 600;

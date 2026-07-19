@@ -114,7 +114,7 @@ function isLikelyImageUrl(url) {
 // hotlinks to the source's own image rather than downloading/rehosting it,
 // matching how link previews work everywhere (Twitter, Facebook, iMessage,
 // Slack all do this too) — it's a citation aid, not a content reproduction.
-function extractImage(item) {
+function extractImageFromFeed(item) {
   if (item.enclosure && isLikelyImageUrl(item.enclosure.url)) {
     return item.enclosure.url;
   }
@@ -130,6 +130,38 @@ function extractImage(item) {
   const html = item.content || item['content:encoded'] || '';
   const match = String(html).match(/<img[^>]+src=["']([^"']+)["']/i);
   if (match && isLikelyImageUrl(match[1])) return match[1];
+  return null;
+}
+
+// Many RSS feeds simply don't include image data at all, even when the
+// actual article page clearly has a photo — the feed format just wasn't
+// built to carry it. Almost every modern site sets an og:image meta tag
+// on the article page itself (that's what powers social-share preview
+// cards), so as a last resort we fetch the real page and pull that.
+async function fetchOgImage(url) {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    const res = await fetch(url, {
+      signal: controller.signal,
+      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; RumorMouthBot/1.0; +https://rumormouth.com)' },
+    });
+    clearTimeout(timeout);
+    if (!res.ok) return null;
+    const html = await res.text();
+    const match =
+      html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)["']/i) ||
+      html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i);
+    return match && isLikelyImageUrl(match[1]) ? match[1] : null;
+  } catch (err) {
+    return null; // network hiccup, timeout, or blocked request — fail quietly, no image
+  }
+}
+
+async function extractImage(item) {
+  const feedImage = extractImageFromFeed(item);
+  if (feedImage) return feedImage;
+  if (item.link) return await fetchOgImage(item.link);
   return null;
 }
 
@@ -152,11 +184,11 @@ function isoDate(d) {
   return new Date(d || Date.now()).toISOString().slice(0, 10);
 }
 
-function writeWireItem(item, source) {
+async function writeWireItem(item, source) {
   const date = isoDate(item.pubDate);
   const filename = `${date}-${slugify(item.title)}.md`;
   const excerpt = toExcerpt(item.contentSnippet || item.content || item.summary);
-  const image = extractImage(item);
+  const image = await extractImage(item);
   const data = {
     title: item.title,
     type: 'wire',
@@ -177,12 +209,12 @@ function writeWireItem(item, source) {
   return filename;
 }
 
-function writeReleaseItem(item, source) {
+async function writeReleaseItem(item, source) {
   const date = isoDate(item.pubDate);
   const filename = `${date}-${slugify(item.title)}.md`;
   const body = stripHtml(item.content || item['content:encoded'] || item.contentSnippet);
   const excerpt = toExcerpt(body);
-  const image = extractImage(item);
+  const image = await extractImage(item);
   const data = {
     title: item.title,
     type: 'release',
@@ -210,7 +242,7 @@ async function main() {
       const feed = await parser.parseURL(source.url);
       const items = (feed.items || []).slice(0, MAX_ITEMS_PER_SOURCE);
       for (const item of items) {
-        const f = writeWireItem(item, source);
+        const f = await writeWireItem(item, source);
         console.log(`  wire   [${source.name}] -> ${f}`);
         written++;
       }
@@ -224,7 +256,7 @@ async function main() {
       const feed = await parser.parseURL(source.url);
       const items = (feed.items || []).filter(isOnTopicRelease).slice(0, MAX_ITEMS_PER_SOURCE);
       for (const item of items) {
-        const f = writeReleaseItem(item, source);
+        const f = await writeReleaseItem(item, source);
         console.log(`  release[${source.name}] -> ${f}`);
         written++;
       }

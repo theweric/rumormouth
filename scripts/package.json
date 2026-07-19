@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Feed ingestion and maintenance scripts for RumorMouth",
   "dependencies": {
-    "rss-parser": "^3.13.0",
-    "gray-matter": "^4.0.3"
+    "gray-matter": "^4.0.3",
+    "rss-parser": "^3.13.0"
   }
 }
