@@ -10,9 +10,9 @@ date: '2026-07-25'
 category: Film & TV
 tag: DEVELOPING
 excerpt: >-
-  President Donald Trump attended his first-ever White House Correspondents
+  President Donald Trump attended his first-ever White House Correspondents’
   Association Dinner, with this year’s rescheduled gala held Friday evening in
-  Wash
+  Was
 image: 'https://variety.com/wp-content/uploads/2026/07/Donald-Trump-WHCA-Dinner.jpg'
 ---
-President Donald Trump attended his first-ever White House Correspondents Association Dinner, with this year’s rescheduled gala held Friday evening in Washington, D.C., and delivered some pointed remarks to the assembled…
+President Donald Trump attended his first-ever White House Correspondents’ Association Dinner, with this year’s rescheduled gala held Friday evening in Washington, D.C., and delivered some pointed remarks to the assemble…
