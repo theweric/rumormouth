@@ -1,6 +1,6 @@
 ---
 title: >-
-  Trump Says White House Correspondents Dinner Is ‘Largest Group of Trump
+  Trump Says White House Correspondents’ Dinner Is ‘Largest Group of Trump
   Derangement Syndrome People Ever Put Together at One Time’
 type: wire
 source_name: Variety
