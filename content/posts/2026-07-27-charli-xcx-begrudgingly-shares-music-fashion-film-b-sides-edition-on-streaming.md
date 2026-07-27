@@ -9,8 +9,8 @@ source_url: >-
 date: '2026-07-27'
 category: Music
 tag: DEVELOPING
-excerpt: The singer's highly-anticipated follow-up to Brat arrived last week
+excerpt: The singer’s highly-anticipated follow-up to Brat arrived last week
 image: >-
   https://www.rollingstone.com/wp-content/uploads/2026/07/GettyImages-2274527021-1.jpg?w=1600&#038;h=900&#038;crop=1
 ---
-The singer's highly-anticipated follow-up to Brat arrived last week
+The singer’s highly-anticipated follow-up to Brat arrived last week
