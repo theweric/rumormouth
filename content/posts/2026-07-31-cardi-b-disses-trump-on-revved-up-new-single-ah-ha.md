@@ -8,9 +8,9 @@ date: '2026-07-31'
 category: Music
 tag: DEVELOPING
 excerpt: >-
-  The song marks the rapper's first new music since her 2025 album, Am I The
+  The song marks the rapper’s first new music since her 2025 album, Am I The
   Drama?
 image: >-
   https://www.rollingstone.com/wp-content/uploads/2026/07/GettyImages-2284929473-1.jpg?w=1600&#038;h=900&#038;crop=1
 ---
-The song marks the rapper's first new music since her 2025 album, Am I The Drama?
+The song marks the rapper’s first new music since her 2025 album, Am I The Drama?
