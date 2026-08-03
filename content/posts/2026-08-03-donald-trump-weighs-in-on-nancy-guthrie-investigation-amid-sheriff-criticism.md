@@ -9,8 +9,8 @@ category: Splits & Sparks
 tag: DEVELOPING
 excerpt: >-
   President Donald Trump weighed in on the Nancy Guthrie investigation after a
-  new report raised concerns over Pima County Sheriff’s Department’s methods. “S
+  new report raised concerns about the Pima County Sheriff’s Department’s effort
 image: >-
   https://www.usmagazine.com/wp-content/uploads/2026/08/GettyImages-2255277125-Donald-Trump-Talks-Nancy-Guthrie-Case-Amid-Sheriff-Criticism.jpg
 ---
-President Donald Trump weighed in on the Nancy Guthrie investigation after a new report raised concerns over Pima County Sheriff’s Department’s methods. “Some people haven’t liked the way the local community is running i…
+President Donald Trump weighed in on the Nancy Guthrie investigation after a new report raised concerns about the Pima County Sheriff’s Department’s efforts to find the missing 84-year-old. “Some people haven’t liked the…
