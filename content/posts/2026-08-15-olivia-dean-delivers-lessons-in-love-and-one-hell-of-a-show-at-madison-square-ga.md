@@ -14,6 +14,6 @@ excerpt: >-
   astoundingly present performance for her first of four sold-out nights at the
   ic
 image: >-
-  https://www.rollingstone.com/wp-content/uploads/2026/08/OliviaDeanPhoto-1.jpg?w=1600&#038;h=900&#038;crop=1
+  https://www.rollingstone.com/wp-content/uploads/2026/08/MSG-LM-20.jpg?w=1600&#038;h=900&#038;crop=1
 ---
 The British singer-songwriter turned The Art of Loving into gospel with an astoundingly present performance for her first of four sold-out nights at the iconic venue
