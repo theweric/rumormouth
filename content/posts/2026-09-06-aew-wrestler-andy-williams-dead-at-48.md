@@ -7,10 +7,9 @@ date: '2026-09-06'
 category: Splits & Sparks
 tag: DEVELOPING
 excerpt: >-
-  Andy Williams -- a professional AEW wrestler known as "The Butcher," died
-  Saturday after experiencing a medical emergency during a tag team match in
-  Pennsy
+  8:40 AM PT -- AEW has released a statement saying ... "All Elite Wrestling is
+  saddened to learn of the passing of Andy Williams, aka The Butcher. A trailbl
 image: >-
   https://imagez.tmz.com/image/d1/16by9/2026/09/06/d1cbcfe47d044330872e806594353386_xl.jpg
 ---
-Andy Williams -- a professional AEW wrestler known as "The Butcher," died Saturday after experiencing a medical emergency during a tag team match in Pennsylvania, according to authorities. The Allegheny County Medical Ex…
+8:40 AM PT -- AEW has released a statement saying ... "All Elite Wrestling is saddened to learn of the passing of Andy Williams, aka The Butcher. A trailblazing musician with ETID and Atomic Rule, Williams made a success…
