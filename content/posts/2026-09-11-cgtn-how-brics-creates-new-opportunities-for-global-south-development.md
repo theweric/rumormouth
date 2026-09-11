@@ -3,7 +3,7 @@ title: 'CGTN: How BRICS creates new opportunities for Global South development'
 type: release
 source_name: PR Newswire — Entertainment & Media
 source_url: >-
-  https://www.prnewswire.com/news-releases/cgtn-how-brics-creates-new-opportunities-for-global-south-development-302876538.html
+  https://www.prnewswire.com/news-releases/cgtn-how-brics-creates-new-opportunities-for-global-south-development-302876558.html
 date: '2026-09-11'
 category: Industry
 tag: PRESS RELEASE
