@@ -12,6 +12,6 @@ excerpt: >-
   silence following the dramatic mistrial ... and he's asking the public for one
   wi
 image: >-
-  https://imagez.tmz.com/image/b0/16by9/2026/09/28/b007b173c3f04f5091671b2b30ba2e86_xl.jpg
+  https://imagez.tmz.com/image/e9/16by9/2026/09/29/e9f4821abe6a45d89d602e2e1a277bd5_xl.png
 ---
 The lone holdout juror in the Lindsay Clancy murder trial is breaking his silence following the dramatic mistrial ... and he's asking the public for one wish, to shift its attention away from him and back on the 3 young…
