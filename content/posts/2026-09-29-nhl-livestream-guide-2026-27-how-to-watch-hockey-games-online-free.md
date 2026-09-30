@@ -8,9 +8,9 @@ date: '2026-09-29'
 category: Music
 tag: DEVELOPING
 excerpt: >-
-  The NHL is more popular than ever thanks to shows like 'Heated Rivalry' and
+  The NHL is more popular than ever thanks to shows like Heated Rivalry and
   young stars like Macklin Celebrini and Gavin McKenna
 image: >-
   https://www.rollingstone.com/wp-content/uploads/2026/09/watch-nhl-games-online-2026-2027.jpg?w=1024&#038;h=683&#038;crop=1
 ---
-The NHL is more popular than ever thanks to shows like 'Heated Rivalry' and young stars like Macklin Celebrini and Gavin McKenna
+The NHL is more popular than ever thanks to shows like Heated Rivalry and young stars like Macklin Celebrini and Gavin McKenna
