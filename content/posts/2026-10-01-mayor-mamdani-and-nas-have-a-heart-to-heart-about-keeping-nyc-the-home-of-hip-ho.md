@@ -11,8 +11,8 @@ category: Music
 tag: DEVELOPING
 excerpt: >-
   “We can’t be content with New York City simply being the birthplace of hip
-  hop," Mamdani said
+  hop," Mamdani says in a video from the Mayor’s Office
 image: >-
   https://www.rollingstone.com/wp-content/uploads/2026/09/mamdani-nas-new-york-hip-hop.jpg?w=1600&#038;h=900&#038;crop=1
 ---
-“We can’t be content with New York City simply being the birthplace of hip hop," Mamdani said
+“We can’t be content with New York City simply being the birthplace of hip hop," Mamdani says in a video from the Mayor’s Office
