@@ -8,9 +8,9 @@ date: '2026-10-23'
 category: Music
 tag: DEVELOPING
 excerpt: >-
-  The singer's curated Advent calendar features an array of different sex toys
-  from Lovehoney, with one discreetly designed to look like a juicy peach
+  The singer's curated Lovehoney collection features an Advent calendar with an
+  array of different sex toys, plus five more standalone products
 image: >-
   https://www.rollingstone.com/wp-content/uploads/2026/10/Shop-Lovehoney-Lily-Allen-Sex-Toys-Online.png?w=900&#038;h=600&#038;crop=1
 ---
-The singer's curated Advent calendar features an array of different sex toys from Lovehoney, with one discreetly designed to look like a juicy peach
+The singer's curated Lovehoney collection features an Advent calendar with an array of different sex toys, plus five more standalone products
