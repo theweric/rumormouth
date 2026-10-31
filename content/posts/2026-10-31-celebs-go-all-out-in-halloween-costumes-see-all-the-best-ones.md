@@ -11,6 +11,6 @@ excerpt: >-
   Some celebs have been known to pull out all the stops during spooky season,
   and
 image: >-
-  https://imagez.tmz.com/image/f6/16by9/2026/10/30/f6cd03ebe09a43b7aa4028fd2a76a2d4_xl.jpg
+  https://imagez.tmz.com/image/97/16by9/2026/10/31/97c8329cec2640a3b58102b9136dbf6b_xl.jpg
 ---
-There are no losers on Halloween ... but there are certainly Hallo-winners! Some celebs have been known to pull out all the stops during spooky season, and this year is no exception! Keke Palmer simply stunned as a Victo…
+There are no losers on Halloween ... but there are certainly Hallo-winners! Some celebs have been known to pull out all the stops during spooky season, and this year is no exception! Lizzo honored the late Dolly Parton b…
